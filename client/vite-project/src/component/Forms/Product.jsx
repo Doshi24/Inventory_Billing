@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Notification from "../../utils/Notification";
+import  server_url  from "../../utils/servicemanger.js";
 
 const ProductForm = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ const ProductForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/products", {
+      const response = await fetch(`${server_url}products/new`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -31,14 +32,14 @@ const ProductForm = () => {
       });
 
       if (response.ok) {
-        setNotification({ type: "success", message: "✅ Product added successfully!" });
+        setNotification({ type: "success", message: "Product added successfully!" });
         setFormData({ name: "", description: "", price: "", quantity: "" });
       } else {
-        setNotification({ type: "error", message: "❌ Failed to add product" });
+        setNotification({ type: "error", message: "Failed to add product" });
       }
     } catch (error) {
       console.error("Error:", error);
-      setNotification({ type: "error", message: "⚠️ Something went wrong" });
+      setNotification({ type: "error", message: "Something went wrong" });
     }
   };
 
