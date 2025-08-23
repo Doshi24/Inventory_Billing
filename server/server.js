@@ -1,4 +1,4 @@
-import connectdb from "./utils/dbconfig.js";
+import { connectdb } from "./utils/dbconfig.js"
 import main from "./main.js";
 import logger from "./utils/logger.js";
 
