@@ -60,10 +60,10 @@ const ProductForm = () => {
   const navigate = useNavigate();
 
   return (
-<div className="flex justify-center bg-gray-100 p-4 min-h-screen">
+<div className="flex justify-center bg-gray-300 p-4 min-h-screen">
   <form
     onSubmit={handleSubmit}
-    className="shadow-2xl w-full max-w-6xl border border-gray-400 rounded-2xl flex flex-col flex-1"
+    className="shadow-2xl w-full max-w-6xl border border-gray-400 rounded-2xl flex flex-col flex-1 bg-white"
   >
     {/* Header */}
     <div className="bg-blue-900 text-white px-6 py-3 rounded-t-2xl">
@@ -221,7 +221,7 @@ const ProductForm = () => {
     <div className="bg-gray-500 px-4 py-4 border-t flex justify-end gap-4 mt-auto rounded-b-2xl">
       <button
         type="button"
-        className="px-6 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400"
+        className="px-6 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-blue-600 hover:text-white transition"
         onClick={() => navigate("/")}
       >
         Cancel
@@ -232,7 +232,7 @@ const ProductForm = () => {
         className={`px-6 py-2 rounded-lg text-white transition ${
           loading
             ? "bg-gray-400 cursor-not-allowed"
-            : "bg-blue-600 hover:bg-blue-700"
+            : "bg-blue-600 hover:bg-blue-900"
         }`}
       >
         {loading ? <Loader type="dots" text="Saving..." /> : "Save Product"}
