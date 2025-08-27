@@ -34,7 +34,7 @@ const selectproduct = async (req, res) => {
     logger.info("select product function called with param "+JSON.stringify(product));
     try {
         if(!product) return res.json({ message: "" });
-        const qry = await sql("select * from products where product_code = '"+product.product_code+"'");
+        const qry = await sql("select * from products where product_code like '%"+product.product_code+"%'");
         logger.info("select * from products where product_code = '"+product.product_code+"'")
         logger.info("selected product details "+JSON.stringify(qry));
         res.json(qry[0]);

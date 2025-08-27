@@ -28,7 +28,7 @@ const Updateproduct = () => {
 //search product 
 useEffect(() => {
     try {
-      if(searchquery.length > 2){
+      if(searchquery.length >= 1){
           fetch(`${server_url}product/search?query=${searchquery}`) // note
           .then(res => res.json())
           .then(data => setsuggestion(data))
