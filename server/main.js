@@ -13,5 +13,7 @@ import router from './routes/product.route.js';
 //route use 
 
 main.use('/products', router);
-
+main.use('/product', router);// for search
+main.use('/product', router);// for select
+main.use('/Product', router);// for update
 export default main;

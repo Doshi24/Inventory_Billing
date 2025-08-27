@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProductForm from './component/Forms/Product'
 import "react-toastify/dist/ReactToastify.css"
 import { ToastContainer } from "react-toastify"
+import Updateproduct from './component/Forms/Updateproduct';
 // import './App.css'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<h1 className="p-6">Welcome Dashboard</h1>} />
         {/* Product → New Product */}
         <Route path="/products/new" element={<ProductForm />} />
+        <Route path="/products/update" element={< Updateproduct/>}/>
         {/* Later you can add Product Delete, Inventory, etc. */}
       </Routes>
       <ToastContainer
