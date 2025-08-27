@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar.jsx";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(null);
@@ -99,7 +100,7 @@ const Navbar = () => {
       </div>
 
       {/* RIGHT SECTION - SEARCHBAR */}
-      <div className="relative">
+      {/* <div className="relative">
         <input
           type="text"
           placeholder="Search..."
@@ -119,7 +120,8 @@ const Navbar = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
             d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
         </svg>
-      </div>
+      </div> */}
+      <SearchBar />
     </div>
   </div>
 </nav>

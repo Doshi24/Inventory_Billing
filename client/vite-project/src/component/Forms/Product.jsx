@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import Notification from "../../utils/Notification";
-import  server_url  from "../../utils/servicemanger.js";
+import  { server_url }  from "../../utils/servicemanger.js";
 import Loader from "../../utils/Loader.jsx";
 import { toast } from "react-toastify";
 import showToast from "../../utils/Toast.jsx";

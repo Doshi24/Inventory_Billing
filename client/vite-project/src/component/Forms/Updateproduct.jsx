@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import Notification from "../../utils/Notification";
-import  server_url  from "../../utils/servicemanger.js";
+import  { server_url }  from "../../utils/servicemanger.js";
 import Loader from "../../utils/Loader.jsx";
 import { toast } from "react-toastify";
 import showToast from "../../utils/Toast.jsx";
 import { useRef } from "react"; 
+// import { useModal } from "../../component/ModalContext.jsx";
 
 const Updateproduct = () => {
 
@@ -122,6 +123,11 @@ const handleProductselect = async (product) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+
+  // const { modals, setModal } = useModal();
+
+  // if (!modals.updateProduct) return null;
 
   return (
 <div className="flex justify-center bg-gray-300 p-4 min-h-screen">
@@ -342,6 +348,7 @@ const handleProductselect = async (product) => {
       <button
         type="submit"
         disabled={loading}
+        // onClick={() => setModal("updateProduct", false)}
         className={`px-6 py-2 rounded-lg text-white transition ${
           loading
             ? "bg-gray-400 cursor-not-allowed"
