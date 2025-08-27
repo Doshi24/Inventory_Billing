@@ -5,6 +5,7 @@ import  server_url  from "../../utils/servicemanger.js";
 import Loader from "../../utils/Loader.jsx";
 import { toast } from "react-toastify";
 import showToast from "../../utils/Toast.jsx";
+import { useRef } from "react"; 
 
 const Updateproduct = () => {
 
@@ -13,6 +14,7 @@ const Updateproduct = () => {
   const [suggestions, setsuggestion] = useState([]); 
   const [notification, setNotification] = useState(null);
   const [isdisabled, setisdisabled] = useState(false);
+  const [highlightIndex, setHighlightIndex] = useState(-1);
   const [formData, setFormData] = useState({
     product_code: "",
     name: "",
@@ -49,6 +51,7 @@ const handleProductselect = async (product) => {
       if (response.ok) {
         const data = await response.json();
         setFormData(data);
+        setsearchquery(product.product_code.trim());
         setsuggestion([]);
         setisdisabled(true);
       }
@@ -94,6 +97,32 @@ const handleProductselect = async (product) => {
 //   to redirect after form submission
   const navigate = useNavigate();
 
+
+// auto-highlight first suggestion
+  useEffect(() => {
+  if (suggestions.length > 0) {
+    setHighlightIndex(0); 
+  } else {
+    setHighlightIndex(-1);
+  }
+}, [suggestions]);
+
+// click outside to close suggestion box
+  const wrapperRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setsuggestion([]); // close dropdown
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
 <div className="flex justify-center bg-gray-300 p-4 min-h-screen">
   <form
@@ -115,33 +144,63 @@ const handleProductselect = async (product) => {
 
         <div className="grid grid-cols-3 gap-6">
           {/* Product Code */}
-          <div>
+          <div ref={wrapperRef} className="relative">
             <label className="block text-gray-400 mb-2">Product Code</label>
             <input
-              type="text"
+            type="text"
               name="product_code"
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck="false"
               value={searchquery}
               onChange={(e) => setsearchquery(e.target.value)}
+              onKeyDown={(e) => {
+              if (e.key === "ArrowDown") {
+                setHighlightIndex((prev) =>
+                  prev < suggestions.length - 1 ? prev + 1 : 0
+                );
+              }
+              if (e.key === "ArrowUp") {
+                setHighlightIndex((prev) =>
+                  prev > 0 ? prev - 1 : suggestions.length - 1
+                );
+              }
+              if (e.key === "Enter") {
+                e.preventDefault(); // stop form submit
+
+                if (highlightIndex >= 0) {
+                  // pick highlighted
+                  handleProductselect(suggestions[highlightIndex]);
+                } else if (suggestions.length > 0) {
+                  // pick first suggestion if nothing highlighted
+                  handleProductselect(suggestions[0]);
+                }
+              }
+              }}
               placeholder="Type to search..."
               required
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 mb-2 disabled:cursor-not-allowed disabled:bg-gray-200"
-              isdisabled={isdisabled}
-              title="Product code cannot be changed"
+              // disabled={isdisabled}
+              // title="Product code cannot be changed"
             />
             {suggestions.length > 0 && (
-            <ul className="absolute z-10 w-full bg-white border rounded-lg shadow max-h-48 overflow-y-auto">
-            {suggestions.map((item) => (
-            <li
-            key={item.product_code}
-            onClick={() => handleProductselect(item)}
-            className="px-4 py-2 cursor-pointer hover:bg-gray-200"
-            >
-            {item.product_code} 
-            </li>
-            ))}
-            </ul>
-            )}
-
+            <ul className="absolute z-10 mt-1 w-300px bg-white border border-gray-300 rounded-lg shadow-lg max-h-48 overflow-y-auto">
+            {suggestions.map((item, index) => (
+              <li
+                key={item.product_code}
+                onClick={() => handleProductselect(item)}
+                className={`px-4 py-2 cursor-pointer transition-colors duration-150 
+                  ${highlightIndex === index 
+                    ? "bg-blue-600 text-white" 
+                    : "hover:bg-blue-100 text-gray-700"}`}
+              >
+                <span className="font-medium"> Product Code: {item.product_code}</span>
+                <span className="ml-2 text-sm font-medium">Product Name: {item.name}</span>
+                </li>
+                ))}
+              </ul>
+          )}
         </div>
 
           {/* Product Name */}
