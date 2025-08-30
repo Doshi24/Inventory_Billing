@@ -1,3 +1,12 @@
-[18-08-2025 18:07:29] INFO: Logger initialized successfully
-[18-08-2025 18:07:29] INFO: Connecting to the database...
-[18-08-2025 18:07:29] INFO: Database connected successfully
+[27-08-2025 22:54:17] INFO: Logger initialized successfully
+[27-08-2025 22:54:18] INFO: search product function called
+[27-08-2025 22:54:18] INFO: Router calledundefined
+[27-08-2025 22:54:18] INFO: Creating MySQL connection pool...
+[27-08-2025 22:54:18] INFO: ✅ Database connected successfully
+[27-08-2025 22:54:18] INFO: Server started at port  http://localhost/3000
+[30-08-2025 10:24:01] INFO: Logger initialized successfully
+[30-08-2025 10:24:03] INFO: search product function called
+[30-08-2025 10:24:03] INFO: Router calledundefined
+[30-08-2025 10:24:03] INFO: Creating MySQL connection pool...
+[30-08-2025 10:24:04] INFO: ✅ Database connected successfully
+[30-08-2025 10:24:04] INFO: Server started at port  http://localhost/3000
