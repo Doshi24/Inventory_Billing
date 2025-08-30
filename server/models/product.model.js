@@ -71,4 +71,12 @@ const Updateproduct = async (req, res) => {
         res.status(500).json({ message: "internal server error" } );
     }
 }
-export { setnewproduct, searchproduct, selectproduct, Updateproduct };
+
+const DisplayProduct  = async (req, res) => {
+    var  dqry = {}
+    dqry = await sql("select * from Products")
+    logger.info("Display product" +JSON.stringify(dqry))
+    res.status(200).json({message : "", result : dqry })
+}
+
+export { setnewproduct, searchproduct, selectproduct, Updateproduct, DisplayProduct };

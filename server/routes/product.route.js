@@ -1,5 +1,5 @@
 import express from 'express';
-import { setnewproduct , searchproduct,selectproduct, Updateproduct } from '../models/product.model.js';
+import { setnewproduct , searchproduct,selectproduct, Updateproduct, DisplayProduct } from '../models/product.model.js';
 import logger from '../utils/logger.js';
 
 // router decalaration
@@ -9,4 +9,5 @@ router.route('/new').post(setnewproduct);
 router.route('/search').get(searchproduct) /// fetch search product
 router.route('/select/:product_code').get(selectproduct)//select product details
 router.route('/update').post(Updateproduct)// update product details
+router.route('/Display').get(DisplayProduct)// diplay products
 export default router;
