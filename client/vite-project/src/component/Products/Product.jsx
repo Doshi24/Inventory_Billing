@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"
-import Notification from "../../utils/Notification";
+import Notification from "../../utils/Notification.jsx";
 import  { server_url }  from "../../utils/servicemanger.js";
 import Loader from "../../utils/Loader.jsx";
 import { toast } from "react-toastify";
@@ -17,7 +17,8 @@ const ProductForm = () => {
     tax_code_id: "",
     category_id: "",
     brand_id: "",
-    unit_of_measure: ""
+    unit_of_measure: "",
+    stock_quantity : ""
   });
 
   const [notification, setNotification] = useState(null);
@@ -47,7 +48,7 @@ const ProductForm = () => {
       setFormData({ name: "", description: "", price: "", quantity: "" });
       navigate("/"); 
     } else {
-    showToast( "info","Not Worked as Expected" );
+    showToast( "Error","Not Worked as Expected" );
   }
 }   catch (error) {
     toast.error("Error:", error);
@@ -112,6 +113,19 @@ const ProductForm = () => {
               type="text"
               name="description"
               value={formData.description}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          {/* // quantity */}
+                    {/* Description */}
+          <div>
+            <label className="block text-gray-700 mb-2">Quantity *</label>
+            <input
+              type="text"
+              name="stock_quantity"
+              value={formData.stock_quantity}
               onChange={handleChange}
               required
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"

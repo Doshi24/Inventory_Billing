@@ -25,7 +25,8 @@ const Updateproduct = () => {
     tax_code_id: "",
     category_id: "",
     brand_id: "",
-    unit_of_measure: ""
+    unit_of_measure: "",
+    stock_quantity: ""
   });
 
 //search product 
@@ -62,10 +63,13 @@ const handleProductselect = async (product) => {
 }
 
 //   handle input change
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+ const handleChange = (e) => {
+  const { name, value } = e.target;
+  setFormData((prev) => ({
+    ...prev,
+    [name]: value,
+  }));
+};
 
 //   handle submit
   const handleSubmit = async (e) => {
@@ -231,6 +235,17 @@ const handleProductselect = async (product) => {
               type="text"
               name="description"
               value={formData.description}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 mb-2">Quantity *</label>
+            <input
+              type="text"
+              name="stock_quantity"
+              value={formData.stock_quantity}
               onChange={handleChange}
               required
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"

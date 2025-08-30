@@ -1,10 +1,11 @@
 import React from 'react'
 import Navbar from './component/Navbar'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ProductForm from './component/Forms/Product'
+import ProductForm from './component/Products/Product'
 import "react-toastify/dist/ReactToastify.css"
 import { ToastContainer } from "react-toastify"
-import Updateproduct from './component/Forms/Updateproduct';
+import Updateproduct from './component/Products/Updateproduct';
+import Displayproduct from './component/Products/Displayproduct';
 // import './App.css'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         {/* Product → New Product */}
         <Route path="/products/new" element={<ProductForm />} />
         <Route path="/products/update" element={< Updateproduct/>}/>
+        <Route path="products/display" element={< Displayproduct/>}/>
         {/* Later you can add Product Delete, Inventory, etc. */}
       </Routes>
       <ToastContainer
