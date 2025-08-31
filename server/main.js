@@ -17,4 +17,5 @@ main.use('/product', router);// for search
 main.use('/product', router);// for select
 main.use('/Product', router);// for update
 main.use('products',router); // for display
+main.use('/products',router); //filter
 export default main;

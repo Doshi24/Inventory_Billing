@@ -80,4 +80,15 @@ const DisplayProduct  = async (req, res) => {
     res.status(200).json({message : "", result : dqry })
 }
 
-export { setnewproduct, searchproduct, selectproduct, Updateproduct, DisplayProduct };
+
+    const FilterProduct = async (req, res) => {
+        const product = req.query
+        logger.info("filter "+JSON.stringify(product))
+        if(!product) return res.json({message : "No Filter found "})
+
+        const fqry  =  await sql("select * from products where product_code = '"+product.product_code+"'")
+        logger.info(fqry)
+        res.status(200).json({result: fqry})
+        }
+
+export { setnewproduct, searchproduct, selectproduct, Updateproduct, DisplayProduct , FilterProduct};

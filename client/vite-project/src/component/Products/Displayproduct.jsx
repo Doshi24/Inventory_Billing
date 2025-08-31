@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Download, Filter, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 import {server_url} from '../../utils/servicemanger.js'
-import { Dice1 } from "lucide-react";
+import FilterMenu from "../../utils/Filtermenu.jsx";
+
 
 function Displayproduct() {
   const [data, setData] = useState([]);
@@ -30,6 +31,20 @@ function Displayproduct() {
   const endIndex = startIndex + itemsPerPage;
   const currentItems = data.slice(startIndex, endIndex);
 
+
+
+  // filter logic 
+  const handlefilter = async (filters) => {
+    try {
+      const filtersearch = new URLSearchParams(filters).toString(); // code and name
+      const result = await fetch(`${server_url}products/filter?${filtersearch}`);
+      const displayresult = await result.json();
+      setData(displayresult.result);
+      setPage(1);
+    } catch (error) {
+      console.log("filter logic didn;t work", error)
+    }
+  }
   return (
     // <div className="bg-black">
     // <div className="mr-20 ml-20 mt-30"> {/* 20px margin all sides */}
@@ -107,9 +122,10 @@ function Displayproduct() {
             <button className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
               <Download className="w-5 h-5" />
             </button>
-            <button className="p-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+            {/* <button className="p-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
               <Filter className="w-5 h-5" />
-            </button>
+            </button> */}
+            <FilterMenu onFilter={handlefilter} />
             <button className="p-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
               <Settings className="w-5 h-5" />
             </button>
