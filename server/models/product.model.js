@@ -86,9 +86,31 @@ const DisplayProduct  = async (req, res) => {
         logger.info("filter "+JSON.stringify(product))
         if(!product) return res.json({message : "No Filter found "})
 
-        const fqry  =  await sql("select * from products where product_code = '"+product.product_code+"'")
-        logger.info(fqry)
-        res.status(200).json({result: fqry})
-        }
+        // const fqry  =  await sql("select * from products where product_code = '"+product.product_code+"'")
+        // logger.info(fqry)
+        // res.status(200).json({result: fqry})
+
+
+        // const fqry2 = await sql("select * from products where name = '"+product.name+"'")
+        // res.status(200).json({result : fqry2})
+        // }
+        try {
+    
+            let qry =  "select * from products where 1=1 "
+    
+            if(product.product_code !== "") qry += "and product_code = '"+product.product_code+"' "
+    
+            if(product.name !== "") qry += "and name = '"+product.name+"' "
+    
+            let fqry = qry 
+            logger.info(fqry)
+            
+            fqry= await sql(fqry)
+    
+            res.status(200).json({result: fqry})
+        } catch (error) {
+            logger.info("error eccored",error)
+    }
+}
 
 export { setnewproduct, searchproduct, selectproduct, Updateproduct, DisplayProduct , FilterProduct};
