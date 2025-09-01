@@ -1,5 +1,6 @@
 import logger from "../utils/logger.js";
 import {sql } from "../utils/dbconfig.js";
+import { Parser } from "json2csv";
 
 const setnewproduct = async (req, res) => {
     let product = req.body;
@@ -82,9 +83,9 @@ const DisplayProduct  = async (req, res) => {
 
 
     const FilterProduct = async (req, res) => {
-        const product = req.query
-        logger.info("filter "+JSON.stringify(product))
-        if(!product) return res.json({message : "No Filter found "})
+        // const product = req.query
+        // logger.info("filter "+JSON.stringify(product))
+        // if(!product) return res.json({message : "No Filter found "})
 
         // const fqry  =  await sql("select * from products where product_code = '"+product.product_code+"'")
         // logger.info(fqry)
@@ -96,21 +97,59 @@ const DisplayProduct  = async (req, res) => {
         // }
         try {
     
-            let qry =  "select * from products where 1=1 "
+            // let qry =  "select * from products where 1=1 "
     
-            if(product.product_code !== "") qry += "and product_code = '"+product.product_code+"' "
+            // if(product.product_code !== "") qry += "and product_code = '"+product.product_code+"' "
     
-            if(product.name !== "") qry += "and name = '"+product.name+"' "
+            // if(product.name !== "") qry += "and name = '"+product.name+"' "
     
-            let fqry = qry 
-            logger.info(fqry)
+            let qry = buildfilterqry(req.query) 
+            logger.info(qry)
             
-            fqry= await sql(fqry)
+            qry= await sql(qry)
     
-            res.status(200).json({result: fqry})
+            res.status(200).json({result: qry})
         } catch (error) {
             logger.info("error eccored",error)
     }
 }
 
-export { setnewproduct, searchproduct, selectproduct, Updateproduct, DisplayProduct , FilterProduct};
+const DownloadProducts = async (req, res) => {
+    try {
+        logger.info("download products")
+        let qry = buildfilterqry(req.query)
+        logger.info("Download Query: " + qry);
+        
+        if (!qry || qry.length === 0) {
+            logger.info("no filter found so downloaded all the products")
+            return res.status(404).json({ message: "No products found" });
+        }
+        let  DPQRY_filter = await sql(qry)
+        let data = new Parser()
+        let file = data.parse(DPQRY_filter)
+
+        res.header("content-type","text/csv");
+        res.attachment("products.csv");
+        res.status(200).send(file)
+    } catch (error) {
+        console.log("file not downloaded" ,error)
+    }
+}
+
+
+
+const  buildfilterqry =  (filters) => {
+    
+        try {
+            let qry =  "select * from products where 1=1 "
+        
+            if(filters.product_code !== "") qry += "and product_code = '"+filters.product_code+"' "
+        
+            if(filters.name !== "") qry += "and name = '"+filters.name+"' "
+            logger.info("build qry "+qry)
+            return qry
+        } catch (error) {
+        console.log("qry not formed for filter",error)
+    }
+}
+export { setnewproduct, searchproduct, selectproduct, Updateproduct, DisplayProduct , FilterProduct, DownloadProducts};

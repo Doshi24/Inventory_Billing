@@ -9,6 +9,7 @@ function Displayproduct() {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const itemsPerPage = 8;
+  const [filters, setFilters] = useState({ product_code: "", name: "" });
 
 
     // Fake API response for demo
@@ -36,6 +37,7 @@ function Displayproduct() {
   // filter logic 
   const handlefilter = async (filters) => {
     try {
+      setFilters(filters)
       const filtersearch = new URLSearchParams(filters).toString(); // code and name
       const result = await fetch(`${server_url}products/filter?${filtersearch}`);
       const displayresult = await result.json();
@@ -45,6 +47,18 @@ function Displayproduct() {
       console.log("filter logic didn;t work", error)
     }
   }
+
+  // download 
+  const handleDownload = () => {
+  const query = new URLSearchParams(filters).toString();
+  const link = document.createElement("a");
+  link.href = `${server_url}product/list/Download?${query}`;
+  link.setAttribute("download", "products.csv");
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
   return (
     // <div className="bg-black">
     // <div className="mr-20 ml-20 mt-30"> {/* 20px margin all sides */}
@@ -119,7 +133,9 @@ function Displayproduct() {
         <div className="flex justify-between items-center mb-4 mr-25 ml-25">
           <h2 className="text-2xl font-medium text-violet-900">Product List</h2>
           <div className="flex space-x-4">
-            <button className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            <button
+            onClick={handleDownload} 
+            className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
               <Download className="w-5 h-5" />
             </button>
             {/* <button className="p-2 bg-green-600 text-white rounded-lg hover:bg-green-700">

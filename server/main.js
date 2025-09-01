@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Router } from 'express';
 import cors from "cors"
 
 //express
@@ -18,4 +18,8 @@ main.use('/product', router);// for select
 main.use('/Product', router);// for update
 main.use('products',router); // for display
 main.use('/products',router); //filter
+
+
+// downloads
+main.use('/product/list',router) 
 export default main;
