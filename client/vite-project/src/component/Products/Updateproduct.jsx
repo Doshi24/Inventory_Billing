@@ -77,7 +77,7 @@ const handleProductselect = async (product) => {
 
     try {
         setLoading(true); // start loading
-        const response = await fetch(`${server_url}Product/update`, {
+        const response = await fetch(`${server_url}product/update`, {
         method: "POST",
         headers: {
         "Content-Type": "application/json"

@@ -22,9 +22,9 @@
 
 
 const searchconfig = [
-  { name: "New Product", path: "/products/new" },
-  { name: "Update Product", path: "/products/update" },
-  { name: "Product List", path: "/products/display" },
+  { name: "New Product", path: "/product/new" },
+  { name: "Update Product", path: "/product/update" },
+  { name: "Product List", path: "/product/display" },
   { name: "Dashboard", path: "/" },
   { name: "Dealer Form", path: "/dealer" },
   // add more as needed

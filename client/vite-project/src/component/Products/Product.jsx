@@ -35,7 +35,7 @@ const ProductForm = () => {
 
     try {
         setLoading(true); // start loading
-        const response = await fetch(`${server_url}products/new`, {
+        const response = await fetch(`${server_url}product/new`, {
         method: "POST",
         headers: {
         "Content-Type": "application/json"

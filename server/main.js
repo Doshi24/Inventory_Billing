@@ -12,12 +12,12 @@ import router from './routes/product.route.js';
 
 //route use 
 
-main.use('/products', router);
+main.use('/product', router);
 main.use('/product', router);// for search
 main.use('/product', router);// for select
 main.use('/Product', router);// for update
 main.use('products',router); // for display
-main.use('/products',router); //filter
+main.use('/product',router); //filter
 
 
 // downloads

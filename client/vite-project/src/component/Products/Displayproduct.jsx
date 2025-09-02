@@ -16,7 +16,7 @@ function Displayproduct() {
     useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`${server_url}products/Display`);
+        const res = await fetch(`${server_url}product/display`);
         const json = await res.json(); // convert response to JSON
         setData(json.result); // save to state
       } catch (err) {
@@ -39,7 +39,7 @@ function Displayproduct() {
     try {
       setFilters(filters)
       const filtersearch = new URLSearchParams(filters).toString(); // code and name
-      const result = await fetch(`${server_url}products/filter?${filtersearch}`);
+      const result = await fetch(`${server_url}product/filter?${filtersearch}`);
       const displayresult = await result.json();
       setData(displayresult.result);
       setPage(1);
@@ -52,7 +52,7 @@ function Displayproduct() {
   const handleDownload = () => {
   const query = new URLSearchParams(filters).toString();
   const link = document.createElement("a");
-  link.href = `${server_url}product/list/Download?${query}`;
+  link.href = `${server_url}product/list/download?${query}`;
   link.setAttribute("download", "products.csv");
   document.body.appendChild(link);
   link.click();
@@ -60,72 +60,7 @@ function Displayproduct() {
 };
 
   return (
-    // <div className="bg-black">
-    // <div className="mr-20 ml-20 mt-30"> {/* 20px margin all sides */}
-    //   {/* Wrapper with horizontal scroll for table only */}
-    //   <div className="overflow-x-auto shadow-lg rounded-lg border">
-    //     <table className="min-w-full border-collapse">
-    //       {/* Header */}
-    //       <thead className="bg-blue-600 text-white">
-    //       <tr>
-    //         <th className="p-3 text-center">Code</th>
-    //         <th className="p-3 text-center">Name</th>
-    //         <th className="p-3 text-center">Quantity</th>
-    //         <th className="p-3 text-center">Price</th>
-    //         <th className="p-3 text-center">Tax</th>
-    //         <th className="p-3 text-center">Brand</th>
-    //         <th className="p-3 text-center">Category</th>
-    //         <th className="p-3 text-center">Unit</th>
-    //         <th className="p-3 text-center">Description</th>
-    //       </tr>
-    //     </thead>
-
-    //     <tbody>
-    //     {currentItems.map((item, index) => (
-    //       <tr
-    //         key={item.product_code}
-    //         className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
-    //       >
-    //         <td className="p-3 text-blue-600 cursor-pointer text-center">
-    //           {item.product_code}
-    //         </td>
-    //         <td className="p-3 text-center">{item.name}</td>
-    //         <td className="p-3 text-center">{item.Quantity}</td>
-    //         <td className="p-3 text-center">{item.per_unit_price}</td>
-    //         <td className="p-3 text-center">{item.tax_rate}</td>
-    //         <td className="p-3 text-center">{item.brand_id}</td>
-    //         <td className="p-3 text-center">{item.category_id}</td>
-    //         <td className="p-3 text-center">{item.unit_of_measure}</td>
-    //         <td className="p-3 text-center">{item.description}</td>
-    //       </tr>
-    //     ))}
-    //     </tbody>
-    //     </table>
-    //   </div>
-
-    //   {/* Pagination Controls */}
-    //   <div className="flex justify-center items-center mt-6 space-x-4">
-    //     <button
-    //       className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
-    //       onClick={() => setPage(page - 1)}
-    //       disabled={page === 1}
-    //     >
-    //       Previous
-    //     </button>
-    //     <span className="font-semibold">
-    //       Page {page} of {Math.ceil(data.length / itemsPerPage)}
-    //     </span>
-    //     <button
-    //       className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
-    //       onClick={() => setPage(page + 1)}
-    //       disabled={endIndex >= data.length}
-    //     >
-    //       Next
-    //     </button>
-    //   </div>
-    // </div>
-    // </div>
-
+    
     <div className="min-h-screen pt-8 bg-gray-300">
       {/* <div className="mx-10 my-10 h-[calc(100vh-6rem)]"> */}
         

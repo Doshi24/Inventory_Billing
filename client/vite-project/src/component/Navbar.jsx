@@ -39,13 +39,13 @@ const Navbar = () => {
           </button>
           <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
             <Link
-              to="/products/new"
+              to="/product/new"
               className="block px-4 py-2 text-gray-700 hover:bg-gray-200 transition"
             >
               ➕ New Product
             </Link>
             <Link
-              to="/products/update"
+              to="/product/update"
               className="block px-4 py-2 text-gray-700 hover:bg-gray-200 transition"
             >
               ❌ Delete Product
@@ -71,7 +71,7 @@ const Navbar = () => {
             Invoices <ChevronDown size={16} />
           </button>
           <div className="absolute left-0 mt-2 w-48 bg-white text-gray-900 rounded-xl shadow-lg p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-            <a href="#" className="block px-4 py-2 hover:bg-gray-200 rounded-md">Purchase Invoice</a>
+            <a href="/purchase/billing/view" className="block px-4 py-2 hover:bg-gray-200 rounded-md">Purchase Invoice</a>
             <a href="#" className="block px-4 py-2 hover:bg-gray-200 rounded-md">Sell Invoice</a>
           </div>
         </div>

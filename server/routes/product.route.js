@@ -9,11 +9,11 @@ router.route('/new').post(setnewproduct);
 router.route('/search').get(searchproduct) /// fetch search product
 router.route('/select/:product_code').get(selectproduct)//select product details
 router.route('/update').post(Updateproduct)// update product details
-router.route('/Display').get(DisplayProduct)// diplay products
+router.route('/display').get(DisplayProduct)// diplay products
 router.route('/filter').get(FilterProduct);// filter product
 
 
 
 // donwloads
-router.route('/Download').get(DownloadProducts)
+router.route('/download').get(DownloadProducts)
 export default router;

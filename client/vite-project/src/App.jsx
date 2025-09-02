@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css"
 import { ToastContainer } from "react-toastify"
 import Updateproduct from './component/Products/Updateproduct';
 import Displayproduct from './component/Products/Displayproduct';
+import Purchase_billingView from './component/Invoices/Purchase/Purchase_BillingView';
 // import './App.css'
 
 function App() {
@@ -17,9 +18,10 @@ function App() {
         {/* Home or Dashboard */}
         <Route path="/" element={<h1 className="p-6">Welcome Dashboard</h1>} />
         {/* Product → New Product */}
-        <Route path="/products/new" element={<ProductForm />} />
-        <Route path="/products/update" element={< Updateproduct/>}/>
-        <Route path="products/display" element={< Displayproduct/>}/>
+        <Route path="/product/new" element={<ProductForm />} />
+        <Route path="/product/update" element={< Updateproduct/>}/>
+        <Route path="product/display" element={< Displayproduct/>}/>
+        <Route path='/purchase/billing/view' element={<Purchase_billingView />}/>
         {/* Later you can add Product Delete, Inventory, etc. */}
       </Routes>
       <ToastContainer
