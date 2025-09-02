@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import Notification from "../../utils/Notification.jsx";
 import  { server_url }  from "../../utils/servicemanger.js";
 import Loader from "../../utils/Loader.jsx";
 import { toast } from "react-toastify";
 import showToast from "../../utils/Toast.jsx";
+import DataListInput from "../../utils/configuration/Datalistfield.jsx";
 
 const ProductForm = () => {
   const [loading, setLoading] = useState(false);
@@ -20,6 +21,18 @@ const ProductForm = () => {
     unit_of_measure: "",
     stock_quantity : ""
   });
+
+
+//   const [selectedCode, setSelectedCode] = useState("");
+//    const [allProducts, setAllProducts] = useState([]);
+// useEffect(()=>{
+//   fetch(`${server_url}product/`)
+//   .then((res)=> res.json())
+//   .then((data)=> setAllProducts(data))
+//   .catch((err) =>console.log("datlist error", err))
+// }, [])
+
+
 
   const [notification, setNotification] = useState(null);
 
@@ -89,8 +102,15 @@ const ProductForm = () => {
               value={formData.product_code}
               onChange={handleChange}
               required
+              autoComplete="off"
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
             />
+            {/* <DataListInput 
+            label={"Product Code"}
+            value={selectedCode}
+            onChange={setSelectedCode}
+            options={allProducts}
+            /> */}
           </div>
 
           {/* Product Name */}
@@ -102,6 +122,7 @@ const ProductForm = () => {
               value={formData.name}
               onChange={handleChange}
               required
+              autoComplete="off"
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
             />
           </div>

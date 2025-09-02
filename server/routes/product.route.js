@@ -1,6 +1,7 @@
 import express from 'express';
 import { setnewproduct , searchproduct,selectproduct, Updateproduct, DisplayProduct,FilterProduct, DownloadProducts } from '../models/product.model.js';
 import logger from '../utils/logger.js';
+import { pcode } from '../middleware/datalist.js';
 
 // router decalaration
 const router = express.Router();
@@ -15,5 +16,9 @@ router.route('/filter').get(FilterProduct);// filter product
 
 
 // donwloads
-router.route('/download').get(DownloadProducts)
+router.route('/download').get(DownloadProducts);
+
+
+// datalist
+router.route('/').get(pcode)
 export default router;

@@ -15,11 +15,16 @@ import router from './routes/product.route.js';
 main.use('/product', router);
 main.use('/product', router);// for search
 main.use('/product', router);// for select
-main.use('/Product', router);// for update
+main.use('/product', router);// for update
 main.use('products',router); // for display
 main.use('/product',router); //filter
 
 
 // downloads
 main.use('/product/list',router) 
+
+
+
+// datalist
+main.use('/product', router);
 export default main;
