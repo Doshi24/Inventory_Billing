@@ -136,6 +136,7 @@ const ProductForm = () => {
               value={formData.description}
               onChange={handleChange}
               required
+              autoComplete="off"
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
             />
           </div>
@@ -149,6 +150,7 @@ const ProductForm = () => {
               value={formData.stock_quantity}
               onChange={handleChange}
               required
+              autoComplete="off"
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
             />
           </div>
@@ -173,6 +175,7 @@ const ProductForm = () => {
               value={formData.per_unit_price}
               onChange={handleChange}
               required
+              autoComplete="off"
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
             />
           </div>
@@ -185,6 +188,7 @@ const ProductForm = () => {
               name="tax_rate"
               value={formData.tax_rate}
               onChange={handleChange}
+              autoComplete="off"
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
             />
           </div>
@@ -197,6 +201,7 @@ const ProductForm = () => {
               name="tax_code_id"
               value={formData.tax_code_id}
               onChange={handleChange}
+              autoComplete="off"
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
             />
           </div>
@@ -218,6 +223,7 @@ const ProductForm = () => {
               name="category_id"
               value={formData.category_id}
               onChange={handleChange}
+              autoComplete="off"
               required
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
             />
@@ -232,6 +238,7 @@ const ProductForm = () => {
               value={formData.brand_id}
               onChange={handleChange}
               required
+              autoComplete="off"
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
             />
           </div>
@@ -245,6 +252,7 @@ const ProductForm = () => {
               value={formData.unit_of_measure}
               onChange={handleChange}
               required
+              autoComplete="off"
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400"
             />
           </div>
@@ -269,6 +277,7 @@ const ProductForm = () => {
             ? "bg-gray-400 cursor-not-allowed"
             : "bg-blue-600 hover:bg-blue-900"
         }`}
+        autoComplete="off"
       >
         {loading ? <Loader type="dots" text="Saving..." /> : "Save Product"}
       </button>
